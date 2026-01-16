@@ -1,0 +1,23 @@
+<div
+  style="flex-direction: column; display: flex;align-items: flex-end;margin-left: 100px;margin-right: 100px;" [style.padding-top]="paddingTop">
+  <mat-icon (click)="close()">close</mat-icon>
+</div>
+<form style="margin-left: 100px;margin-right: 100px;margin-top: 15px;" (ngSubmit)="onSubmit()" #frm="ngForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Title</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title"
+      name="title" [(ngModel)]="note.title">
+    <p style="color: red;" *ngIf="note.title.length==0">Title field cannot be empty</p>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Description</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="Description"
+      name="description" [(ngModel)]="note.description"></textarea>
+    <p style="color: red;" *ngIf="note.description.length==0">Description field cannot be empty</p>
+  </div>
+  <div style="display: flex;flex-direction: column;align-items:center;">
+    <button *ngIf="!isSaveInProgress" class="btn btn-success"
+      [disabled]="note.title.length==0 || note.description.length==0">Add</button>
+    <mat-spinner [diameter]="50" *ngIf="isSaveInProgress"></mat-spinner>
+  </div>
+</form>

@@ -1,0 +1,17 @@
+<mat-card style="display: flex;flex-direction: column;gap: 16px;min-width: 400px;max-width: 400px;">
+    <mat-card-header style="position:relative">
+        <mat-card-title>{{note.title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content
+        style="position: relative;margin-top: 5px;margin-bottom: 16px;margin-right: 16px;">{{note.description}}</mat-card-content>
+    <button *ngIf="!isDeleteInProgress" mat-flat-button color="warn"
+        style="position:relative;margin-bottom: 16px;margin-right: 16px;bottom: 0;right: 0;margin-left: 16px;width: fit-content;align-self: self-end;"
+        (click)="onDeleteClick()">
+        <div>
+            <mat-icon style="display:flex;flex-direction: column; align-items:  center;">delete</mat-icon>
+        </div>
+
+    </button>
+    <mat-spinner *ngIf="isDeleteInProgress" [diameter]="30"
+        style="position: relative;margin-bottom: 16px;margin-right: 16px;align-self: self-end;"></mat-spinner>
+</mat-card>

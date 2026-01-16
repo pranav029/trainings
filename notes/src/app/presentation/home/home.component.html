@@ -1,0 +1,19 @@
+<div style="height:100%;background-color:#C9F8FA;display: flex;flex-direction: column;">
+    <label *ngIf="errorMessage.length>0" style="align-self: center;">{{errorMessage}}</label>
+    <mat-spinner *ngIf="isFetchInProgress" diameter="30" style="align-self: center;margin-top: 16px;"></mat-spinner>
+    <button *ngIf="isAddNoteVisible" (click)="hideCreateNote()" mat-flat-button color="accent"
+        style="position: absolute;right:0;margin-top: 16px;margin-right: 100px;">
+        <mat-icon>edit</mat-icon>
+        Create
+    </button>
+    <app-create *ngIf="!isAddNoteVisible" (showFab)="refresh($event)" paddingTop="16px"></app-create>
+    <mat-grid-list role="list" style="margin-left: 100px;margin-right: 100px;margin-bottom: 10px;"
+        [style.padding-top]="isAddNoteVisible?'70px':'32px'" cols="3" rowHeight="3:1" gutterSize="16px">
+        <div *ngFor="let note of notes">
+            <mat-grid-tile role="listitem" rowspan="1" colspan="1">
+                <app-note-card [note]="note" (refreshEvent)="refresh($event)"></app-note-card>
+                <!-- <div style="background-color: red;width: 100px;height: 100px;"></div> -->
+            </mat-grid-tile>
+        </div>
+    </mat-grid-list>
+</div>

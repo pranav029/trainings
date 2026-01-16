@@ -1,0 +1,14 @@
+<mat-toolbar>
+  <div style="display: flex;flex-direction: row;align-items: center;width: 100%;justify-content: space-between;">
+    <span class="header">Notes App</span>
+    <button *ngIf="shouldShowSignOutIcon()" mat-flat-button color="warn" (click)="onSignOutClick()">
+      <mat-icon>exit_to_app</mat-icon>
+      SignOut
+    </button>
+  </div>
+
+</mat-toolbar>
+<mat-spinner *ngIf="isSyncInProgress" style="left: 50%;top: 40%;" diameter="50"></mat-spinner>
+<router-outlet *ngIf="!isSyncInProgress">
+
+</router-outlet>

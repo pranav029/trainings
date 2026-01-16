@@ -1,0 +1,30 @@
+<div style="display: flex;flex-direction: column;align-items: center;background-color: aliceblue;height: 100%;">
+  <mat-card style="display: flex;flex-direction: column;width: 30%;gap: 10px;margin-top: 32px;">
+    <h2 style="align-self: center;margin-top: 16px;">Login To Continue</h2>
+    <mat-form-field appearance="outline" style="display: flex;flex-direction: column;margin-left: 16px;margin-right: 16px;">
+      <label class="form-label">Enter your email</label>
+      <div>
+        <input matInput placeholder="pat@example.com" [(ngModel)]="credential.email" required style="width: 100%;"
+          >
+        <mat-error *ngIf="shouldShowEmailError()" style="color: red;">{{getEmailError()}}</mat-error>
+      </div>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="display: flex;flex-direction: column;margin-left: 16px;margin-right: 16px;">
+      <label class="form-label">Enter your password</label>
+      <div style="display: flex;flex-direction: row;">
+        <input matInput [type]="hide ? 'password' : 'text'" style="width: 100%;"
+          [(ngModel)]="credential.password">
+        <mat-icon matSuffix (click)="hide = !hide" style="align-self:center;margin-left: 8px;">{{hide ? 'visibility_off'
+          : 'visibility'}}</mat-icon>
+      </div>
+      <p *ngIf="shouldShowPasswordError()" style="color:red;">{{getPasswordError()}}</p>
+    </mat-form-field>
+    <label *ngIf="errorMessage.length>0" class="form-label"
+      style="align-self: center;margin-bottom: 16px;color: red;">{{errorMessage}}</label>
+    <button *ngIf="!isSignInProgress" class="btn btn-success"
+      style="width: fit-content;align-self: center;margin-bottom: 16px;" color="primary" (click)="onSignInClick()"
+      [disabled]="shouldShowEmailError() || shouldShowPasswordError()">Login</button>
+    <mat-spinner *ngIf="isSignInProgress" [diameter]="30" style="align-self: center;margin-bottom: 16px;"></mat-spinner>
+    <p style="align-self: center;">Don't have an account? <a routerLink="/signup">Sign Up</a></p>
+  </mat-card>
+</div>
